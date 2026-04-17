@@ -238,7 +238,8 @@ class Rss {
             if (_torrent.name === bencodeInfo.name && _torrent.hash !== bencodeInfo.hash) {
               try {
                 this.addCount += 1;
-                await client.addTorrent(torrent.url, torrent.hash, true, finalUploadLimit, this.downloadLimit, _torrent.savePath, this.category);
+                const skipHashCheck = (+_torrent.completed === +_torrent.size);
+                await client.addTorrent(torrent.url, torrent.hash, skipHashCheck, finalUploadLimit, this.downloadLimit, _torrent.savePath, this.category);
                 await util.runRecord('INSERT INTO torrents (hash, name, size, rss_id, category, link, record_time, add_time, record_type, record_note) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
                   [torrent.hash, torrent.name, torrent.size, this.id, this.category, torrent.link, moment().unix(), moment().unix(), 1, addReason]);
                 await this.ntf.addTorrent(this._rss, client, torrent);
