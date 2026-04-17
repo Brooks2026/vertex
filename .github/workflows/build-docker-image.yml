@@ -31,9 +31,9 @@ jobs:
         echo "CI_COMMIT_MESSAGE=$CI_COMMIT_MESSAGE" >> $GITHUB_ENV
         echo "CI_COMMIT_BRANCH=$CI_COMMIT_BRANCH" >> $GITHUB_ENV
         echo "CI_COMMIT_SHA=${{ github.event.head_commit.id }}" >> $GITHUB_ENV
-        echo "IMAGE_TAG_LATEST=Brooks2026/vertex:latest" >> $GITHUB_ENV
+        echo "IMAGE_TAG_LATEST=brooks2026/vertex:latest" >> $GITHUB_ENV
         echo "DOCKER_BUILDKIT=1" >> $GITHUB_ENV
-        echo "IMAGE_TAG_BRANCH=Brooks2026/vertex:$CI_COMMIT_BRANCH" >> $GITHUB_ENV
+        echo "IMAGE_TAG_BRANCH=brooks2026/vertex:$CI_COMMIT_BRANCH" >> $GITHUB_ENV
         echo "PUSH_TIME=$PUSH_TIME" >> $GITHUB_ENV
 
     - name: Install Dependencies
