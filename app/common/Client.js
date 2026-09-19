@@ -348,7 +348,7 @@ class Client {
 
   async addTorrentByTorrentFile (filepath, hash, isSkipChecking = false, uploadLimit = 0, downloadLimit = 0, savePath, category, autoTMM, paused) {
     const { statusCode } = await this.client.addTorrentByTorrentFile(this.clientUrl, this.cookie, filepath, isSkipChecking, uploadLimit, downloadLimit, savePath, category, autoTMM, this.firstLastPiecePrio, paused);
-    if (statusCode !== 200 && statusCode !== 204) {
+    if (statusCode !== 200 && statusCode !== 202 && statusCode !== 204) {
       this.login();
       throw new Error('状态码: ' + statusCode);
     }
