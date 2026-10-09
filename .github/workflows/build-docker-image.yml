@@ -7,11 +7,10 @@ on:
     - stable
     - release
     - mod
-  workflow_dispatch: 
 
 jobs:
   build_docker_image:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - run: git fetch --prune --unshallow
@@ -92,4 +91,3 @@ jobs:
       run: |
         docker buildx build --platform linux/amd64,linux/arm64 --cache-from lswl/vertex --tag $IMAGE_TAG_LATEST --build-arg BUILDKIT_INLINE_CACHE=1 . --push
         #docker buildx build --platform linux/amd64,linux/arm64 --cache-from lswl/vertex --tag $IMAGE_TAG_BRANCH --build-arg BUILDKIT_INLINE_CACHE=1 . --push
-    
